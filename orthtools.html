@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>transliterate text</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<style>
+  button {
+    font-family: inherit;
+    font-size: 1em;
+  }
+  p {
+    font-size: 20px;
+    white-space: pre-wrap;
+    padding: 0 70px;
+  }
+  textarea {
+    font-family: inherit;
+    font-size: 18px;
+  }
+  div {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: auto;
+    padding: 70px 0;
+  }
+</style>
+
+<body>
+  <div id="tlview">
+    <h2>orthographical converter</h2>
+    <textarea placeholder="enter text here in preferred orthography" rows="8" cols="100"
+      data-bind="textInput: txtdata, attr:{title:inorth, dir:indir}"></textarea>
+    <br>
+    <span data-bind="if: !curver()"><span data-bind="text: langname"></span></span>
+    <span> <select data-bind="options: versions, value: curver, hidden: !curver()"></select></span>
+    <button data-bind="click: sendTask.bind(this, 'lat', version), hidden: inorth() === 'lat'">to latin</button>
+    <button data-bind="click: sendTask.bind(this, 'cyr', version), hidden: inorth() === 'cyr'">to cyrillic</button>
+    <button data-bind="click: sendTask.bind(this, 'ara', version), hidden: inorth() === 'ara'">to arabic</button>
+    <button data-bind="click: edit, visible: lang() !== ''">edit</button>
+    <button data-bind="click: clear, visible: ce()">clear</button>
+
+    <p id="maindispl" class="displ"
+      data-bind="attr:{contenteditable:ce,title:lang, dir:outdir}, style:{'background-color': ce() ? '#f9f4ef':'transparent'}, text: display">
+    </p>
+  </div>
+  <!--load the view model-->
+  <script type="text/javascript" data-main='convertorth' src="../jslib/require.js"></script>
+</body>
+
+</html>
