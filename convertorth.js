@@ -1,6 +1,8 @@
 /**
+ * author: hanzhizhu 
  * This file processes the input info from orthtools.html using Knockout bindings
  */
+
 requirejs.config({
 		baseUrl: '../jslib',  
 		paths: {
